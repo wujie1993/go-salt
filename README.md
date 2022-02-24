@@ -5,7 +5,7 @@ go 调用 salt-api 接口
 ## 安装
 
 ```
-$ go get github.com/daixijun/go-salt
+$ go get github.com/wujie1993/go-salt
 ```
 
 ## 使用
@@ -17,7 +17,7 @@ import (
     "context"
     "fmt"
 
-    salt "github.com/daixijun/go-salt"
+    salt "github.com/wujie1993/go-salt"
 )
 
 func main() {
@@ -41,6 +41,11 @@ func main() {
         Target: "*",
         Function: "cmd.run",
         Arg:      []string{"uptime"},
+        KwArg: map[string]interface{}{
+			"pillar": map[string]string{
+				"foo": "bar",
+			},
+		},
     }
     resp, err := client.Run(ctx, &payload)
     if err != nil {

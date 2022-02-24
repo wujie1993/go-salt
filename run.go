@@ -7,12 +7,12 @@ import (
 
 type RunRequest struct {
 	*ExternalAuth
-	Client   string            `json:"client"`
-	Target   interface{}       `json:"tgt"`
-	Function string            `json:"fun"`
-	JID      string            `json:"jid,omitempty"` // runner
-	Arg      []string          `json:"arg,omitempty"`
-	KwArg    map[string]string `json:"kwarg,omitempty"`
+	Client   string                 `json:"client"`
+	Target   interface{}            `json:"tgt"`
+	Function string                 `json:"fun"`
+	JID      string                 `json:"jid,omitempty"` // runner
+	Arg      []string               `json:"arg,omitempty"`
+	KwArg    map[string]interface{} `json:"kwarg,omitempty"`
 }
 
 type RunResponse struct {
@@ -22,7 +22,7 @@ type RunResponse struct {
 func (c *client) Run(ctx context.Context, payload *RunRequest) (*RunResponse, error) {
 	payload.ExternalAuth = c.ExternalAuth
 
-	data, err := c.doRequest(ctx,"POST", "run", payload)
+	data, err := c.doRequest(ctx, "POST", "run", payload)
 	if err != nil {
 		return nil, err
 	}

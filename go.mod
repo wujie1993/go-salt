@@ -1,3 +1,3 @@
-module github.com/daixijun/go-salt
+module github.com/wujie1993/go-salt
 
 go 1.15
